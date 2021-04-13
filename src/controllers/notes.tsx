@@ -30,4 +30,16 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.delete('/:noteId', async (req, res) => {
+    try {
+        console.log(`noteId=${req.params.noteId}`);
+        const deletedNote = await notesService.remove(req.params.noteId);
+        console.log(`deletedNote=${JSON.stringify(deletedNote)}`);
+        if (!deletedNote) throw new Error('Could not find note');
+        res.status(200).send(deletedNote);
+    } catch(e) {
+        res.status(400).send('Error deleting note: ' + e.message);
+    }
+});
+
 export default router;

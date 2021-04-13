@@ -1,35 +1,22 @@
-import { Note } from "../../types";
+import { NewNote } from "../../types";
 
-interface NoteFields {
-    content: unknown,
-    created: unknown
-}
-
-const toNewNote = ({ content, created }: NoteFields): Note => {
+const toNewNote = ({ content, created }: NewNote): NewNote => {
+    console.log(`content=${content}`);
+    console.log(`created=${created}`);
     return {
-        content: parseContent(content),
+        content: parseString(content),
         created: parseDate(created)
     };
 };
 
-const parseContent = (value: unknown): string => {
+const parseString = (value: unknown): string => {
     if (!value || !isString(value)) {
-        throw new Error('Invalid or missing content');
+        throw new Error(`Invalid or missing string: ${JSON.stringify(value)}`);
     }
     return value;
 };
 
-// const parseDate = (value: unknown): string => {
-//     if (!value || !isDate(value)) {
-//         throw new Error('Invalid or missing date');
-//     }
-
-//     return `${value.getDate()}/${value.getMonth()}/${value.getFullYear()}, 
-//         ${value.getHours()}:${value.getMinutes()}:${value.getMilliseconds()}`;
-// };
-
 const parseDate = (value: unknown): string => {
-    console.log(`parseDate value=${value}`);
     if (!value || !isString(value) || !isDate(value)) {
         throw new Error('Invalid or missing date');
     }

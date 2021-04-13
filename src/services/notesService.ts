@@ -2,10 +2,15 @@ import Note from '../models/note';
 
 const getAll = async () => {
     const notes = await Note.find({});
-    console.log(`getAll notes=${notes}`);
     return notes;
+};
+
+const remove = async (id: string) => {
+    const deleted = await Note.deleteOne({_id: id});
+    return deleted;
 };
 
 export default {
     getAll,
+    remove
 };
