@@ -1,5 +1,7 @@
 import database from './src/controllers/database';
 import notesRouter from './src/controllers/notes';
+import usersRouter from './src/controllers/users';
+
 import express from 'express';
 import cors from 'cors';
 
@@ -11,6 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/notes', notesRouter);
+app.use('/users', usersRouter);
 
 const PORT = 3001;
 app.listen(PORT, () => {

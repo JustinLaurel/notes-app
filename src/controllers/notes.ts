@@ -2,7 +2,7 @@ import express from 'express';
 const router = express.Router();
 import notesService from '../services/notesService';
 import Note from '../models/note';
-import toNewNote from '../validators/noteValidators';
+import toNewNote from '../validators/notes';
 
 router.get('/', async (_req, res) => {
     let allNotes;

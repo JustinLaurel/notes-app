@@ -1,4 +1,4 @@
-import { NewNote } from "../../types";
+import { NewNote } from "../types";
 
 const toNewNote = ({ content, created }: NewNote): NewNote => {
     console.log(`content=${content}`);
