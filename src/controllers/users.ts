@@ -1,11 +1,11 @@
 import express from 'express';
 import User from '../models/user';
 const router = express.Router();
-import { toUser } from '../validators/users';
+import { parseAndHashNewUser } from '../validators/users';
 
 router.post('/', async (req, res) => {
     try {
-        const user = toUser(req.body);
+        const user = await parseAndHashNewUser(req.body);
         const userDocument = new User({...user});
         const savedUser = await userDocument.save();
         res.status(200).send(savedUser);

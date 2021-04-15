@@ -9,14 +9,27 @@ export interface NewNote {
     created: string
 }
 
-export interface NewUser {
-    username: string,
+interface UserBase {
+    username: string
+}
+interface HashedUserBase extends UserBase {
+    passwordHash: string
+}
+
+export interface NewUser extends UserBase {
     password: string,
     name: string
 }
 
-export interface User {
-    username: string,
-    passwordHash: string,
+export interface NewUserHashed extends HashedUserBase {
     name: string
+}
+
+export interface User extends HashedUserBase {
+    _id: string,
+    name: string
+}
+
+export interface Credentials extends UserBase {
+    password: string
 }

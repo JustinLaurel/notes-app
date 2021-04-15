@@ -1,8 +1,6 @@
 import { NewNote } from "../types";
 
-const toNewNote = ({ content, created }: NewNote): NewNote => {
-    console.log(`content=${content}`);
-    console.log(`created=${created}`);
+const parseNote = ({ content, created }: NewNote): NewNote => {
     return {
         content: parseString(content),
         created: parseDate(created)
@@ -31,4 +29,4 @@ const isDate = (value: string): boolean => {
     return Boolean(Date.parse(value));
 };
 
-export default toNewNote;
+export default parseNote;
