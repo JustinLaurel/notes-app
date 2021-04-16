@@ -9,12 +9,21 @@ export const parseAndHashNewUser = async ({ username, password, name }: NewUser)
     };
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const parseUser = (object: any): User => {
+export const parseUser = (object: unknown): User | null => {
+    if (!isUser(object)) throw new Error();
     return {
-        _id: parser.parseString(object._id),
-        username: parser.parseString(object.username),
-        passwordHash: parser.parseString(object.passwordHash),
-        name: parser.parseString(object.name)
+        _id: object._id,
+        username: object.username,
+        passwordHash: object.passwordHash,
+        name: object.name
     };
+};
+
+const isUser = (value: unknown): value is User => {
+    if (value && typeof value === 'object') {
+        if ('username' in value && 'name' in value && 'passwordHash' in value) {
+            return true;
+        }
+    }
+    return false;
 };

@@ -1,12 +1,4 @@
 import bcrypt from 'bcrypt';
-import { User } from '../types';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const isUser = (value: any): value is User => {
-    return isString(value.username)
-        && isString(value.name)
-        && isString(value.passwordHash);
-};
 
 const isString = (value: unknown): value is string => {
     return typeof value === 'string'; 
@@ -42,7 +34,6 @@ const isDate = (value: string): boolean => {
 };
 
 export default {
-    isUser,
     isString,
     parseString,
     parseDate,

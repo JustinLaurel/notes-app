@@ -3,7 +3,7 @@ import parsers from './parsers';
 
 const toCredentials = ({ username, password }: Credentials): Credentials => {
     return {
-        username: parsers.parseString(username),
+        username: parsers.parseString(username.toLowerCase()),
         password: parsers.parseString(password)
     };
 };

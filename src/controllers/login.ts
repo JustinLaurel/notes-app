@@ -14,29 +14,28 @@ router.post('/', async (req, res) => {
         const query = await UserModel.findOne({ username });
         const user = parseUser(query);
     
-        const passwordCorrect = user && parser.isUser(user)
-            ? bcrypt.compare(password, user.passwordHash)
+        const passwordCorrect = user
+            ? await bcrypt.compare(password, user.passwordHash)
             : false;
     
-        if (!passwordCorrect) {
-            throw new Error(`Invalid username or password`);
-        }
-
-        const userForToken = {
-            _id: user._id,
-            username: user.username
-        };
-        const SECRET = parser.parseString(process.env.SECRET);
-        const token = jwt.sign(userForToken, SECRET);
-
-        res.status(200).send({
-            token,
-            username,
-            name: user.name
-        });
+        if (passwordCorrect && user) {
+            const userForToken = {
+                _id: user._id,
+                username: user.username
+            };
+            const SECRET = parser.parseString(process.env.SECRET);
+            const token = jwt.sign(userForToken, SECRET);
+    
+            res.status(200).send({
+                token,
+                username,
+                name: user.name    
+            });
+        } else 
+            throw new Error();
     } catch(e) {
-        console.log(`Invalid login info in login POST router`);
-        res.status(401).send(`Error: Invalid username or password`);
+        res.statusMessage = `Invalid username or password`;
+        res.status(401).send({error: `Invalid username or password`});
     }
 });
 
