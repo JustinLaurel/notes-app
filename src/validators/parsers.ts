@@ -5,7 +5,7 @@ const isString = (value: unknown): value is string => {
 };
 
 const parseAndHashPassword = async (value: unknown): Promise<string> => {
-    const password = parseString(value);
+    const password = parseString(value, 'null or not a valid string');
 
     const saltRounds = 12;
     const passwordHash = await bcrypt.hash(password, saltRounds);
@@ -15,9 +15,10 @@ const parseAndHashPassword = async (value: unknown): Promise<string> => {
     return passwordHash;
 };
 
-const parseString = (value: unknown): string => {
+const parseString = (value: unknown, errorMessage?: string): string => {
     if (!value || !isString(value)) {
-        throw new Error(`Invalid or missing string: ${JSON.stringify(value)}`);
+        if (errorMessage) throw new Error(`Error: ${errorMessage}`);
+        else throw new Error(`parseString error: ${JSON.stringify(value)} is not a string`);
     }
     return value;
 };
@@ -38,5 +39,5 @@ export default {
     parseString,
     parseDate,
     isDate,
-    parseAndHashPassword
+    parseAndHashPassword,
 };

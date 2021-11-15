@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
 
 const noteSchema = new mongoose.Schema({
@@ -11,15 +11,20 @@ const noteSchema = new mongoose.Schema({
     created: {
         type: String,
         required: true
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 });
 noteSchema.plugin(uniqueValidator);
 
 noteSchema.set('toJSON', {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    transform: (_document: any, returnedObject: { _id: any, __v: any; }) => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    transform: (_document: any, returnedObject: { _id: Schema.Types.ObjectId | string, __v: any, user: Schema.Types.ObjectId | string}) => {
         returnedObject._id = returnedObject._id.toString();
+        returnedObject.user = returnedObject.user.toString();
         delete returnedObject.__v;
     }
 });

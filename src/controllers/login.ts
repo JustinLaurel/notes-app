@@ -1,10 +1,11 @@
 import express from 'express';
-import toCredentials from '../validators/login';
+import { toCredentials } from '../validators/login';
 import bcrypt from 'bcrypt';
 import parser from '../validators/parsers';
 import UserModel from '../models/user';
 import jwt from 'jsonwebtoken';
 import { parseUser } from '../validators/users';
+import { UserForToken } from '../types';
 
 const router = express.Router();
 
@@ -22,14 +23,18 @@ router.post('/', async (req, res) => {
             const userForToken = {
                 _id: user._id,
                 username: user.username
-            };
-            const SECRET = parser.parseString(process.env.SECRET);
+            } as UserForToken;
+
+            const SECRET = parser.parseString(
+                process.env.SECRET,
+                'Authentication error, process.env.SECRET is not a valid string'
+            );
             const token = jwt.sign(userForToken, SECRET);
     
             res.status(200).send({
                 token,
                 username,
-                name: user.name    
+                name: user.name
             });
         } else 
             throw new Error();
