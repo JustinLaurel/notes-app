@@ -12,7 +12,7 @@ router.get('/:username', async (req, res) => {
 
         res.status(200).send(!usernameExists);
     } catch(e) {
-        res.status(400).send(e.message);
+        res.status(400).send((e as Error).message);
     }
 });
 

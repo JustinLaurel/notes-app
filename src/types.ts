@@ -1,14 +1,16 @@
-export interface Note {
-    _id: string,
-    content: string,
-    created: string,
-    user: string,
-}
+import mongoose from 'mongoose';
 
 export interface NewNote {
     content: string,
-    created: string
+    created: string,
+    position: string
 }
+
+export interface Note extends NewNote {
+    _id: string,
+    user: string,
+}
+
 
 interface UserBase {
     username: string
@@ -45,3 +47,29 @@ export interface Credentials extends UserBase {
 export interface DecodedToken {
     _id: string
 }
+
+export interface NoteIdPosition {
+    _id: string,
+    position: string
+}
+
+interface UpdateOperation {
+    updateOne: {
+        filter: {
+            _id: mongoose.Types.ObjectId;
+        };
+        update: {
+            $set: {
+                position: string;
+            };
+        };
+    }
+}
+interface DeleteOperation {
+    deleteOne: {
+        filter: {
+            _id: mongoose.Types.ObjectId;
+        }
+    }
+}
+export type BulkOperation = (UpdateOperation | DeleteOperation)[];

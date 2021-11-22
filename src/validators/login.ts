@@ -23,7 +23,6 @@ export const decodeToken = (value: unknown): string | null => {
     const SECRET = parsers.parseString(process.env.SECRET, 'Invalid SECRET env variable');
 
     const decoded = jwt.verify(token, SECRET);
-    console.log(`jwt.verify(token, SECRET)=${JSON.stringify(decoded)}`);
 
     if (isDecodedToken(decoded)) return decoded._id;
     else return null;
