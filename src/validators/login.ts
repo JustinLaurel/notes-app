@@ -25,5 +25,5 @@ export const decodeToken = (value: unknown): string | null => {
     const decoded = jwt.verify(token, SECRET);
 
     if (isDecodedToken(decoded)) return decoded._id;
-    else return null;
+    else throw new Error(`Invalid token from client`);
 };

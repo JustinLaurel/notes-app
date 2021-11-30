@@ -1,26 +1,24 @@
 import express from 'express';
 const router = express.Router();
 import notesService from '../services/notesService';
-import { parseNote as parseNewNote, isNoteIdPositionArray, parseNoteIdPosition } from '../validators/notes';
+import { isNoteIdPositionArray, parseNoteIdPosition, parseNewNote, isNote } from '../validators/notes';
 import { decodeToken } from '../validators/login';
-import { NewNote, NoteIdPosition } from '../types';
+import { NewNote, Note, NoteIdPosition } from '../types';
 import User from '../models/user';
 
 router.get('/', async (req, res) => {
     let allNotes;
     try {
         const token = req.headers.authorization;
-        const userId = decodeToken(token);
-        if (!userId) throw new Error(`Invalid token from client`);
-
+        const userId = decodeToken(token) as string;
         allNotes = await notesService.get(userId);
+        allNotes
+            ? res.status(200).send(allNotes)
+            : res.status(400).send(`Notes could not be found`);
     } catch(e) {
         res.status(404).send(`Unauthorized: ${(e as Error).message}`);
     }
 
-    allNotes
-        ? res.status(200).send(allNotes)
-        : res.status(400).send(`Notes could not be found`);
 });
 
 router.post('/', async (req, res) => {
@@ -35,7 +33,7 @@ router.post('/', async (req, res) => {
 
         res.status(200).send(savedNote);
     } catch(e) {
-        res.status(404).send(`Error saving note: ${(e as Error).message}`);
+        res.status(404).send((e as Error).message);
     }
 });
 
@@ -59,6 +57,18 @@ const removeNoteIdFromUser = async (userId: string, noteId: string) => {
         {new: true}
     );
 };
+
+router.put('/content', async (req, res) => {
+    try {
+        const toUpdate = req.body as Note;
+        if (!isNote(toUpdate)) throw new Error(`Invalid note from frontend in req.body`);
+
+        await notesService.updateContent(toUpdate);
+    } catch(e) {
+        res.status(401).send((e as Error).message);
+        console.error(`Error in router.put/content: ${(e as Error).message}`);
+    }
+});
 
 router.delete('/:noteId', async (req, res) => {
     try {

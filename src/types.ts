@@ -53,6 +53,12 @@ export interface NoteIdPosition {
     position: string
 }
 
+export interface Pad {
+    _id: string,
+    content: string,
+    user: string,
+}
+
 interface UpdateOperation {
     updateOne: {
         filter: {

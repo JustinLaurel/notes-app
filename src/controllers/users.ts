@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
             name: user.name,
         });
     } catch(e) {
-        res.status(401).send(`Invalid username or password`);
+        res.status(401).send((e as Error).message);
     }
 });
 

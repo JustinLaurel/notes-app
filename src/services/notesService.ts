@@ -1,7 +1,7 @@
 import User from '../models/user';
-import Note from '../models/note';
+import NoteModel from '../models/note';
 import { parseUser } from '../validators/users';
-import { NewNote, NoteIdPosition } from '../types';
+import { NewNote, NoteIdPosition, Note } from '../types';
 import mongoose from 'mongoose';
 import { BulkOperation } from '../types';
 
@@ -28,6 +28,15 @@ const get = async (userId: string) => {
     return null;
 };
 
+const updateContent = async (note: Note) => {
+    const updated = await NoteModel.updateOne(
+        { _id: note._id },
+        { content: note.content },
+        { new: true }
+    );
+    return updated;
+};
+
 const getBulkUpdateArray = (notes: NoteIdPosition[]) => {
     const bulkArr = [];
 
@@ -41,10 +50,9 @@ const getBulkUpdateArray = (notes: NoteIdPosition[]) => {
     }
     return bulkArr as BulkOperation;
 };
-
 const updatePosition = async (notes: NoteIdPosition[]) => {
     const operations = getBulkUpdateArray(notes);
-    const result = await Note.collection.bulkWrite(operations);
+    const result = await NoteModel.collection.bulkWrite(operations);
     return result;
 };
 
@@ -56,12 +64,12 @@ const removeAndUpdatePositions = async (noteId: string, notes: NoteIdPosition[])
         } 
     });
 
-    const deleted = await Note.collection.bulkWrite(operations);
+    const deleted = await NoteModel.collection.bulkWrite(operations);
     return deleted;
 };
 
 const add = async (newNote: NewNote, userId: string) => {
-    const noteWithUser = new Note({
+    const noteWithUser = new NoteModel({
         ...newNote,
         user: userId,
     });
@@ -83,5 +91,6 @@ export default {
     removeAndUpdatePositions,
     add,
     addIdToUser,
-    updatePosition
+    updatePosition,
+    updateContent
 };
