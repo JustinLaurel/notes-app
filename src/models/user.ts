@@ -22,7 +22,12 @@ const userSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'Note',
         required: true
-    }]
+    }],
+    pad: {
+        type: Schema.Types.ObjectId,
+        ref: 'Pad',
+        unique: true,
+    }
 });
 
 userSchema.set('toJSON', {

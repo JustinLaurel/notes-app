@@ -11,7 +11,6 @@ export interface Note extends NewNote {
     user: string,
 }
 
-
 interface UserBase {
     username: string
 }

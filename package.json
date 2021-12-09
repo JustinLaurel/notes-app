@@ -1,0 +1,42 @@
+{
+    "name": "notesbackend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "tsc": "tsc",
+        "lint": "eslint --ext .ts .",
+        "setup": "npm install && mv .env.public .env && npm start",
+        "start": "ts-node-dev index.ts",
+        "dev": "ts-node-dev index.ts",
+        "build:ui": "rm -rf build && cd ../notesFrontend/ && npm run build --prod && cp -r build ../notesBackend"
+    },
+    "author": "Weng Keat",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/bcrypt": "^3.0.1",
+        "@types/cors": "^2.8.10",
+        "@types/express": "^4.17.11",
+        "@types/json-stringify-safe": "^5.0.0",
+        "@types/jsonwebtoken": "^8.5.1",
+        "@types/mongoose": "^5.10.4",
+        "@types/mongoose-unique-validator": "^1.0.4",
+        "@typescript-eslint/eslint-plugin": "^4.21.0",
+        "@typescript-eslint/parser": "^4.21.0",
+        "eslint": "^7.23.0",
+        "json-stringify-safe": "^5.0.1",
+        "nodemon": "^2.0.15",
+        "ts-node-dev": "^1.1.6",
+        "typescript": "^4.2.4"
+    },
+    "dependencies": {
+        "bcrypt": "^5.0.1",
+        "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^5.12.3",
+        "mongoose-unique-validator": "^2.0.3"
+    }
+}

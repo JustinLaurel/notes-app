@@ -1,9 +1,12 @@
 import express from 'express';
 import UserModel from '../models/user';
+import PadModel from '../models/pad';
 const router = express.Router();
 import { createNewUser, parseUser, parseUserForToken } from '../validators/users';
 import parsers from '../validators/parsers';
 import jwt from 'jsonwebtoken';
+import { parsePad } from '../validators/pad';
+import usersService from '../services/usersService';
 
 router.get('/:username', async (req, res) => {
     try {
@@ -20,9 +23,18 @@ router.post('/', async (req, res) => {
     try {
         const userToSave = await createNewUser(req.body);
         const userDocument = new UserModel({...userToSave});
-        const result = await userDocument.save();
+        const userResult = await userDocument.save();
 
-        const user = parseUser(result);
+        const user = parseUser(userResult);
+
+        const padDocument = new PadModel({ content: 'Type here to start!', user: user._id });
+        const padResult = await padDocument.save();
+        console.log(`hi`);
+        console.log(`hi2`);
+        const pad = parsePad(padResult);
+
+        await usersService.updateUserPad(user._id, pad);
+
         const userForToken = parseUserForToken(user);
 
         const SECRET = parsers.parseString(

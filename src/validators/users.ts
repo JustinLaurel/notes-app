@@ -7,7 +7,7 @@ export const createNewUser = async ({ username, password, name }: SignupData): P
         username: parser.parseString(username.toLowerCase(), errorMsg), //All usernames are case-insensitive
         passwordHash: await parser.parseAndHashPassword(password),
         name: parser.parseString(name, errorMsg),
-        notes: []
+        notes: [],
     };
 };
 
