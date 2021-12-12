@@ -7,7 +7,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "tsc": "tsc",
         "lint": "eslint --ext .ts .",
-        "setup": "npm install && mv .env.public .env && npm start",
+        "setup": "npm install && mv .eslintignore-sample .eslintignore && mv .eslintrc-sample .eslintrc && mv tsconfig-sample.json tsconfig.json && mv .env.public .env && echo 'Setup done. Type npm start to start app'",
         "start": "ts-node-dev index.ts",
         "dev": "ts-node-dev index.ts",
         "build:ui": "rm -rf build && cd ../notesFrontend/ && npm run build --prod && cp -r build ../notesBackend"
