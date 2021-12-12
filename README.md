@@ -4,8 +4,8 @@ App about 80% complete, functionality will be added & bugs fixed in the order:
 - Implement checkbox to mark note as completed, and 'delete all completed notes' button
 - Implement file uploading feature for both 'Notes' and 'Pad' tabs
 
-## Installation
-  ###### For production build
+## Installation  
+  ###### To run in production mode
   - Clone repository into local machine
   - cd to cloned repo
   - type 'npm run setup'
@@ -19,6 +19,10 @@ App about 80% complete, functionality will be added & bugs fixed in the order:
   API key and password SECRET is present in .env. SECRET is a dummy string for this github-uploaded version and not the one used locally
   
   API key is for MongoDB, but for my second account created only for exposure on Github
+  
+  ###### Raw frontend code is at: https://github.com/JustinLaurel/notes-frontend
+
+  
   
 ## Tech stack
 MERN stack
