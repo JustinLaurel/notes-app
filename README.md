@@ -45,7 +45,7 @@ MERN stack
 ###### login
 - User authentication using JSON web token
 - Signup forms are validated client-side and server-side
-- Check username availability queries MongoDB database for any matching usernames
+- "check" button on signup form queries MongoDB database for any matching usernames
 - Username must be checked, and password requirements must be met or signup form will not allow submission
 - Upon successful login, authentication token will be sent back from backend API and stored client-side in localStorage
 - Future sessions you will be logged in on every site visit (until browser data is cleared)
