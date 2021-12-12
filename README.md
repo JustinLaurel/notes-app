@@ -12,7 +12,7 @@ App about 80% complete, functionality to be added & bugs fixed in the order:
   - When setup completes, type 'npm start'
   - Wait for "Connected to MongoDB" message
   - Go to http://localhost:3001 on your browser
-  - Login using the credentials (Or sign up with a new account!):
+  - Login using the credentials (Or sign up for a new account!):
     - username:  **guestacc**
     - password:  **guestpass1**
     
