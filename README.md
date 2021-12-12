@@ -13,8 +13,8 @@ App about 80% complete, functionality will be added & bugs fixed in the order:
   - Wait for "Connected to MongoDB" message
   - Go to http://localhost:3001 on your browser
   - Login using the credentials (Or sign up with a new account!):
-    - username: ## guestacc
-    - password: ## guestpass1
+    - username:  guestacc
+    - password:  guestpass1
     
   Note that API key and password SECRET is present in .env. SECRET is a dummy string for this github-uploaded version and not the one used locally
   
