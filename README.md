@@ -7,7 +7,7 @@ App about 80% complete, functionality will be added & bugs fixed in the order:
 ## Installation
   ###### For production build
   - Clone repository into local machine
-  - cd to notesBackend
+  - cd to cloned repo
   - type 'npm run setup'
   - When setup completes, type 'npm start'
   - Wait for "Connected to MongoDB" message
