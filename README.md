@@ -8,16 +8,17 @@ App about 80% complete, functionality will be added & bugs fixed in the order:
   ###### For production build
   - Clone repository into local machine
   - cd to notesBackend
-  - type 'npm setup'
-  - "Connected to MongoDB" message on console means setup is complete
+  - type 'npm run setup'
+  - When setup completes, type 'npm start'
+  - Wait for "Connected to MongoDB" message
   - Go to http://localhost:3001 on your browser
   - Login using the credentials:
     - username: #guestacc
     - password: #guestpass1
     
-  Note that API key and password SECRET is present in .env. SECRET is a dummy string for this github-uploaded version and not actually the one I use locally
+  Note that API key and password SECRET is present in .env. SECRET is a dummy string for this github-uploaded version and not the one used locally
   
-  API key is for MongoDB, but for my second account created & specifically only for public exposure in Github
+  API key is for MongoDB, but for my second account created only for exposure in Github
   
 ## Tech stack
 MERN stack
@@ -68,7 +69,3 @@ MERN stack
 - User and About tab not completed yet
 - Currently focusing on important core functionality with 'Notes' and 'Pad' tab
 - User tab will display additional information about logged-in user, About tab will list down tech stack
-
-## Planned additional features
-- Implement file uploading feature for both 'Notes' and 'Pad' tabs
-- Implement checkbox to mark note as completed, and 'delete all completed notes' button
