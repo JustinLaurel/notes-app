@@ -1,4 +1,4 @@
-App about 80% complete, functionality will be added & bugs fixed in the order:
+App about 80% complete, functionality to be added & bugs fixed in the order:
 - App will be made responsive
 - Pad is somewhat buggy. Switching routes from Pad to Notes and back will erase all current state from Pad, including Undo/Redo history
 - Implement checkbox to mark note as completed, and 'delete all completed notes' button
@@ -8,7 +8,7 @@ App about 80% complete, functionality will be added & bugs fixed in the order:
   ###### To run in production mode
   - Clone repository into local machine
   - cd to cloned repo
-  - type 'npm run setup' **('npm install' fails and throws an error on Windows. Not sure why)**
+  - type 'npm run setup' **('npm install' fails and throws an error on Windows. Not quite sure why)**
   - When setup completes, type 'npm start'
   - Wait for "Connected to MongoDB" message
   - Go to http://localhost:3001 on your browser
