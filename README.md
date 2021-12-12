@@ -18,7 +18,7 @@ App about 80% complete, functionality will be added & bugs fixed in the order:
     
   Note that API key and password SECRET is present in .env. SECRET is a dummy string for this github-uploaded version and not the one used locally
   
-  API key is for MongoDB, but for my second account created only for exposure in Github
+  API key is for MongoDB, but for my second account created only for exposure on Github
   
 ## Tech stack
 MERN stack
