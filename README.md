@@ -20,7 +20,7 @@ App about 80% complete, functionality will be added & bugs fixed in the order:
   
   API key is for MongoDB, but for my second account created only for exposure on Github
   
-  ###### Raw frontend code is at: https://github.com/JustinLaurel/notes-frontend
+  **Raw frontend code is at: https://github.com/JustinLaurel/notes-frontend**
 
   
   
