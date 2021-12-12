@@ -8,7 +8,7 @@ App about 80% complete, functionality will be added & bugs fixed in the order:
   ###### To run in production mode
   - Clone repository into local machine
   - cd to cloned repo
-  - type 'npm run setup'
+  - type 'npm run setup' **(This command fails and throws an error on Windows. Not sure why)**
   - When setup completes, type 'npm start'
   - Wait for "Connected to MongoDB" message
   - Go to http://localhost:3001 on your browser
