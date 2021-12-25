@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "jest --verbose",
         "tsc": "tsc",
         "lint": "eslint --ext .ts .",
         "setup": "npm install && mv .eslintignore-sample .eslintignore && mv .eslintrc-sample .eslintrc && mv tsconfig-sample.json tsconfig.json && mv .env.public .env && echo 'Setup done. Type npm start to start app'",
@@ -25,6 +25,7 @@
         "@typescript-eslint/eslint-plugin": "^4.21.0",
         "@typescript-eslint/parser": "^4.21.0",
         "eslint": "^7.23.0",
+        "jest": "^27.4.5",
         "json-stringify-safe": "^5.0.1",
         "nodemon": "^2.0.15",
         "ts-node-dev": "^1.1.6",
@@ -38,5 +39,8 @@
         "jsonwebtoken": "^8.5.1",
         "mongoose": "^5.12.3",
         "mongoose-unique-validator": "^2.0.3"
+    },
+    "jest": {
+        "testEnvironment": "node"
     }
 }
